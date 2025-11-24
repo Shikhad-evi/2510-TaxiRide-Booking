@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book_A_Taxi - Your Reliable Ride</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a.active {
+            color: var(--secondary);
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* Booking Form */
+        .booking {
+            padding: 5rem 0;
+            background-color: #f5f5f5;
+        }
+        
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .booking-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .booking-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .booking-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        .error-message {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Page Content */
+        .page-content {
+            padding: 5rem 0;
+            min-height: 60vh;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            nav {
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Hidden class for page navigation */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Book<span>A</span>Taxi</a>
+            <div class="mobile-menu">☰</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                    <li><a href="#" class="nav-link" data-page="services">Services</a></li>
+                    <li><a href="#" class="nav-link" data-page="booking">Book a Ride</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home-page" class="page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Your Reliable Ride, Just a Tap Away</h1>
+                <p>Book_A_Taxi offers safe, comfortable, and affordable taxi services. Get where you need to go with our professional drivers.</p>
+                <a href="#" class="btn btn-accent nav-link" data-page="booking">Book a Ride Now</a>
+            </div>
+        </section>
+
+        <!-- Services Preview -->
+        <section class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Services</h2>
+                    <p>We offer a variety of transportation options to suit your needs</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🚗</div>
+                        <h3>Standard Taxi</h3>
+                        <p>Comfortable rides for everyday travel at affordable rates</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚙</div>
+                        <h3>SUV Service</h3>
+                        <p>Spacious vehicles perfect for groups or extra luggage</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏎️</div>
+                        <h3>Premium Ride</h3>
+                        <p>Luxury vehicles for special occasions or business travel</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚐</div>
+                        <h3>Airport Transfer</h3>
+                        <p>Reliable airport pickups and drop-offs with flight tracking</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking CTA -->
+        <section class="booking">
+            <div class="container booking-container">
+                <div class="booking-image">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Taxi Service">
+                </div>
+                <div class="booking-form">
+                    <h2>Book Your Ride</h2>
+                    <p>Fill out the form to book your taxi</p>
+                    <form id="booking-form-home">
+                        <div class="form-group">
+                            <label for="pickup-home">Pickup Location</label>
+                            <input type="text" id="pickup-home" class="form-control" placeholder="Enter pickup address">
+                            <div class="error-message" id="pickup-error-home"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="destination-home">Destination</label>
+                            <input type="text" id="destination-home" class="form-control" placeholder="Enter destination">
+                            <div class="error-message" id="destination-error-home"></div>
+                        </div>
+                        <button type="submit" class="btn">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- About Us Page -->
+    <section id="about-page" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About Book_A_Taxi</h2>
+                    <p>Learn more about our company and mission</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+                    <div>
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">Our Story</h3>
+                        <p style="margin-bottom: 1.5rem;">Founded in 2015, Book_A_Taxi started with a simple mission: to provide reliable, safe, and affordable transportation for everyone. What began as a small local service has grown into a trusted name in urban mobility.</p>
+                        <p style="margin-bottom: 1.5rem;">We believe that getting from point A to point B should be simple, stress-free, and accessible to all. Our team of professional drivers and dedicated support staff work tirelessly to ensure your journey is comfortable and efficient.</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our Team" style="width: 100%; border-radius: 8px;">
+                    </div>
+                </div>
+                
+                <div style="background-color: var(--light); padding: 3rem; border-radius: 8px;">
+                    <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">Our Values</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛡️</div>
+                            <h4 style="margin-bottom: 1rem;">Safety First</h4>
+                            <p>Your safety is our top priority. All our drivers are thoroughly vetted and vehicles regularly inspected.</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">⏱️</div>
+                            <h4 style="margin-bottom: 1rem;">Punctuality</h4>
+                            <p>We value your time. Our drivers are trained to be punctual and efficient with every ride.</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">💚</div>
+                            <h4 style="margin-bottom: 1rem;">Customer Focus</h4>
+                            <p>We put our customers at the center of everything we do, ensuring a pleasant experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Page -->
+    <section id="services-page" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Services</h2>
+                    <p>Choose the perfect ride for your needs</p>
+                </div>
+                
+                <div class="services-grid" style="margin-bottom: 3rem;">
+                    <div class="service-card">
+                        <div class="service-icon">🚗</div>
+                        <h3>Standard Taxi</h3>
+                        <p>Our most popular option, perfect for everyday travel. Comfortable sedans with professional drivers.</p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Up to 4 passengers</li>
+                            <li>Air conditioning</li>
+                            <li>Affordable pricing</li>
+                        </ul>
+                        <a href="#" class="btn nav-link" data-page="booking" style="margin-top: 1.5rem; display: inline-block;">Book Now</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚙</div>
+                        <h3>SUV Service</h3>
+                        <p>Spacious vehicles perfect for groups, families, or when you have extra luggage.</p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Up to 6 passengers</li>
+                            <li>Extra luggage space</li>
+                            <li>Comfortable seating</li>
+                        </ul>
+                        <a href="#" class="btn nav-link" data-page="booking" style="margin-top: 1.5rem; display: inline-block;">Book Now</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏎️</div>
+                        <h3>Premium Ride</h3>
+                        <p>Luxury vehicles for special occasions, business travel, or when you want to travel in style.</p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>High-end vehicles</li>
+                            <li>Professional chauffeurs</li>
+                            <li>Complimentary water</li>
+                        </ul>
+                        <a href="#" class="btn nav-link" data-page="booking" style="margin-top: 1.5rem; display: inline-block;">Book Now</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚐</div>
+                        <h3>Airport Transfer</h3>
+                        <p>Reliable airport pickups and drop-offs with flight tracking to ensure perfect timing.</p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Flight tracking</li>
+                            <li>Meet & greet service</li>
+                            <li>Fixed pricing</li>
+                        </ul>
+                        <a href="#" class="btn nav-link" data-page="booking" style="margin-top: 1.5rem; display: inline-block;">Book Now</a>
+                    </div>
+                </div>
+                
+                <div style="background-color: var(--light); padding: 3rem; border-radius: 8px; text-align: center;">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary);">Not Sure Which Service to Choose?</h3>
+                    <p style="margin-bottom: 1.5rem;">Our customer service team is here to help you select the perfect ride for your needs.</p>
+                    <a href="#" class="btn nav-link" data-page="contact">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Page -->
+    <section id="booking-page" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Book Your Ride</h2>
+                    <p>Fill out the form below to book your taxi</p>
+                </div>
+                
+                <div class="booking-container">
+                    <div class="booking-image">
+                        <img src="https://images.unsplash.com/photo-1502872364588-894d7d6ddfab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Book a Ride">
+                    </div>
+                    <div class="booking-form">
+                        <form id="booking-form">
+                            <div class="form-group">
+                                <label for="service-type">Service Type</label>
+                                <select id="service-type" class="form-control">
+                                    <option value="">Select a service</option>
+                                    <option value="standard">Standard Taxi</option>
+                                    <option value="suv">SUV Service</option>
+                                    <option value="premium">Premium Ride</option>
+                                    <option value="airport">Airport Transfer</option>
+                                </select>
+                                <div class="error-message" id="service-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pickup">Pickup Location</label>
+                                <input type="text" id="pickup" class="form-control" placeholder="Enter pickup address">
+                                <div class="error-message" id="pickup-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="destination">Destination</label>
+                                <input type="text" id="destination" class="form-control" placeholder="Enter destination">
+                                <div class="error-message" id="destination-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" class="form-control">
+                                <div class="error-message" id="date-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <input type="time" id="time" class="form-control">
+                                <div class="error-message" id="time-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="passengers">Number of Passengers</label>
+                                <input type="number" id="passengers" class="form-control" min="1" max="10" value="1">
+                                <div class="error-message" id="passengers-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter your full name">
+                                <div class="error-message" id="name-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
+                                <div class="error-message" id="phone-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email (Optional)</label>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                                <div class="error-message" id="email-error"></div>
+                            </div>
+                            <button type="submit" class="btn" style="width: 100%;">Book Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact-page" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch with our team</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                    <div>
+                        <h3 style="margin-bottom: 1.5rem; color: var(--primary);">Get In Touch</h3>
+                        <p style="margin-bottom: 2rem;">Have questions or need assistance? Our customer service team is here to help you.</p>
+                        
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary);">Contact Information</h4>
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div style="font-size: 1.5rem; margin-right: 1rem;">📞</div>
+                                <div>
+                                    <strong>Phone:</strong> +1 (555) 123-4567
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div style="font-size: 1.5rem; margin-right: 1rem;">✉️</div>
+                                <div>
+                                    <strong>Email:</strong> info@bookataxi.com
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
+                                <div style="font-size: 1.5rem; margin-right: 1rem;">📍</div>
+                                <div>
+                                    <strong>Address:</strong> 123 Taxi Street, Cityville, State 12345
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 style="margin-bottom: 1rem; color: var(--primary);">Business Hours</h4>
+                            <p>Monday - Friday: 8:00 AM - 10:00 PM</p>
+                            <p>Saturday - Sunday: 9:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="booking-form">
+                            <h3 style="margin-bottom: 1rem;">Send Us a Message</h3>
+                            <form id="contact-form">
+                                <div class="form-group">
+                                    <label for="contact-name">Your Name</label>
+                                    <input type="text" id="contact-name" class="form-control" placeholder="Enter your name">
+                                    <div class="error-message" id="contact-name-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-email">Your Email</label>
+                                    <input type="email" id="contact-email" class="form-control" placeholder="Enter your email">
+                                    <div class="error-message" id="contact-email-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-subject">Subject</label>
+                                    <input type="text" id="contact-subject" class="form-control" placeholder="Enter subject">
+                                    <div class="error-message" id="contact-subject-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-message">Message</label>
+                                    <textarea id="contact-message" class="form-control" rows="5" placeholder="Enter your message"></textarea>
+                                    <div class="error-message" id="contact-message-error"></div>
+                                </div>
+                                <button type="submit" class="btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Book_A_Taxi</h3>
+                    <p>Your reliable ride, just a tap away. Safe, comfortable, and affordable taxi services.</p>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">📷</a>
+                        <a href="#">🐦</a>
+                        <a href="#">💼</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                        <li><a href="#" class="nav-link" data-page="services">Services</a></li>
+                        <li><a href="#" class="nav-link" data-page="booking">Book a Ride</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Standard Taxi</a></li>
+                        <li><a href="#">SUV Service</a></li>
+                        <li><a href="#">Premium Ride</a></li>
+                        <li><a href="#">Airport Transfer</a></li>
+                        <li><a href="#">Corporate Accounts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>✉️ info@bookataxi.com</li>
+                        <li>📍 123 Taxi Street, Cityville</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Book_A_Taxi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            // Function to show a specific page and hide others
+            function showPage(pageId) {
+                pages.forEach(page => {
+                    if (page.id === pageId + '-page') {
+                        page.classList.remove('hidden');
+                    } else {
+                        page.classList.add('hidden');
+                    }
+                });
+                
+                // Update active nav link
+                navLinks.forEach(link => {
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Add click event to all nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                    
+                    // Scroll to top when navigating
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Show home page by default
+            showPage('home');
+            
+            // Mobile menu toggle
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const nav = document.querySelector('nav');
+            
+            mobileMenu.addEventListener('click', function() {
+                nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Form Validation for Booking Form
+            const bookingForm = document.getElementById('booking-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Reset error messages
+                    const errorMessages = document.querySelectorAll('.error-message');
+                    errorMessages.forEach(error => {
+                        error.style.display = 'none';
+                    });
+                    
+                    let isValid = true;
+                    
+                    // Validate service type
+                    const serviceType = document.getElementById('service-type');
+                    if (!serviceType.value) {
+                        document.getElementById('service-error').textContent = 'Please select a service type';
+                        document.getElementById('service-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate pickup location
+                    const pickup = document.getElementById('pickup');
+                    if (!pickup.value.trim()) {
+                        document.getElementById('pickup-error').textContent = 'Please enter a pickup location';
+                        document.getElementById('pickup-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate destination
+                    const destination = document.getElementById('destination');
+                    if (!destination.value.trim()) {
+                        document.getElementById('destination-error').textContent = 'Please enter a destination';
+                        document.getElementById('destination-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate date
+                    const date = document.getElementById('date');
+                    if (!date.value) {
+                        document.getElementById('date-error').textContent = 'Please select a date';
+                        document.getElementById('date-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate time
+                    const time = document.getElementById('time');
+                    if (!time.value) {
+                        document.getElementById('time-error').textContent = 'Please select a time';
+                        document.getElementById('time-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate passengers
+                    const passengers = document.getElementById('passengers');
+                    if (!passengers.value || passengers.value < 1) {
+                        document.getElementById('passengers-error').textContent = 'Please enter a valid number of passengers';
+                        document.getElementById('passengers-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate name
+                    const name = document.getElementById('name');
+                    if (!name.value.trim()) {
+                        document.getElementById('name-error').textContent = 'Please enter your name';
+                        document.getElementById('name-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate phone
+                    const phone = document.getElementById('phone');
+                    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+                    if (!phone.value.trim() || !phoneRegex.test(phone.value.replace(/\D/g, ''))) {
+                        document.getElementById('phone-error').textContent = 'Please enter a valid phone number';
+                        document.getElementById('phone-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // If form is valid, show success message
+                    if (isValid) {
+                        alert('Your ride has been booked successfully! We will contact you shortly to confirm your booking.');
+                        bookingForm.reset();
+                    }
+                });
+            }
+            
+            // Form Validation for Contact Form
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Reset error messages
+                    const errorMessages = document.querySelectorAll('.error-message');
+                    errorMessages.forEach(error => {
+                        error.style.display = 'none';
+                    });
+                    
+                    let isValid = true;
+                    
+                    // Validate name
+                    const contactName = document.getElementById('contact-name');
+                    if (!contactName.value.trim()) {
+                        document.getElementById('contact-name-error').textContent = 'Please enter your name';
+                        document.getElementById('contact-name-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate email
+                    const contactEmail = document.getElementById('contact-email');
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!contactEmail.value.trim() || !emailRegex.test(contactEmail.value)) {
+                        document.getElementById('contact-email-error').textContent = 'Please enter a valid email address';
+                        document.getElementById('contact-email-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate subject
+                    const contactSubject = document.getElementById('contact-subject');
+                    if (!contactSubject.value.trim()) {
+                        document.getElementById('contact-subject-error').textContent = 'Please enter a subject';
+                        document.getElementById('contact-subject-error').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    // Validate message
+                    const contactMessage = document.getElementById('contact-message');
+                    if (!contactMessage.value.trim()) {
+                        document.getElementById('contact-message-error').textContent = 'Please enter your message';
+                        document.getElementById('contact-m
