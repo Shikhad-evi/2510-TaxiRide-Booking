@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book_A_Taxi - Your Reliable Ride</title>
     <style>
-        /* Global Styles */
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
@@ -36,7 +35,6 @@
             padding: 0 15px;
         }
         
-        /* Header & Navigation */
         header {
             background-color: var(--primary);
             color: white;
@@ -465,9 +463,8 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
                     <div>
                         <h3 style="margin-bottom: 1rem; color: var(--primary);">Our Story</h3>
-                        <p style="margin-bottom: 1.5rem;">Founded in 2015, Book_A_Taxi started with a simple mission: to provide reliable, safe, and affordable transportation for everyone. What began as a small local service has grown into a trusted name in urban mobility.</p>
-                        <p style="margin-bottom: 1.5rem;">We believe that getting from point A to point B should be simple, stress-free, and accessible to all. Our team of professional drivers and dedicated support staff work tirelessly to ensure your journey is comfortable and efficient.</p>
-                    </div>
+                        <p style="margin-bottom: 1.5rem;">Founded in 2025, Book_A_Taxi started with a simple mission: to provide reliable, safe, and affordable transportation for everyone. What began as a small local service has grown into a trusted name in urban mobility.</p>
+                        
                     <div>
                         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our Team" style="width: 100%; border-radius: 8px;">
                     </div>
@@ -655,19 +652,19 @@
                             <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                                 <div style="font-size: 1.5rem; margin-right: 1rem;">📞</div>
                                 <div>
-                                    <strong>Phone:</strong> +1 (555) 123-4567
+                                    <strong>Phone:</strong> +1 (000)) 123-4567
                                 </div>
                             </div>
                             <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                                 <div style="font-size: 1.5rem; margin-right: 1rem;">✉️</div>
                                 <div>
-                                    <strong>Email:</strong> info@bookataxi.com
+                                    <strong>Email:</strong> Abc@bookataxi.com
                                 </div>
                             </div>
                             <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
                                 <div style="font-size: 1.5rem; margin-right: 1rem;">📍</div>
                                 <div>
-                                    <strong>Address:</strong> 123 Taxi Street, Cityville, State 12345
+                                    <strong>Address:</strong> 123 Taxi, SFO, State 12345
                                 </div>
                             </div>
                         </div>
@@ -722,7 +719,6 @@
                     <div class="social-links">
                         <a href="#">📘</a>
                         <a href="#">📷</a>
-                        <a href="#">🐦</a>
                         <a href="#">💼</a>
                     </div>
                 </div>
@@ -749,14 +745,14 @@
                 <div class="footer-column">
                     <h3>Contact Info</h3>
                     <ul>
-                        <li>📞 +1 (555) 123-4567</li>
-                        <li>✉️ info@bookataxi.com</li>
-                        <li>📍 123 Taxi Street, Cityville</li>
+                        <li>📞 +1 (000) 123-4567</li>
+                        <li>✉️ Abc@bookataxi.com</li>
+                        <li>📍 123 Taxi, SFO</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Book_A_Taxi. All rights reserved.</p>
+                <p>&copy; 2025 Book_A_Taxi. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -936,8 +932,22 @@
                         isValid = false;
                     }
                     
-                    // Validate message
-                    const contactMessage = document.getElementById('contact-message');
-                    if (!contactMessage.value.trim()) {
-                        document.getElementById('contact-message-error').textContent = 'Please enter your message';
-                        document.getElementById('contact-m
+                                        // Validate message
+                                        const contactMessage = document.getElementById('contact-message');
+                                        if (!contactMessage.value.trim()) {
+                                            document.getElementById('contact-message-error').textContent = 'Please enter your message';
+                                            document.getElementById('contact-message-error').style.display = 'block';
+                                            isValid = false;
+                                        }
+                                        
+                                        // If valid, show success message and reset form
+                                        if (isValid) {
+                                            alert('Your message has been sent. We will get back to you shortly.');
+                                            contactForm.reset();
+                                        }
+                                    });
+                                }
+                            });
+                        </script>
+                    </body>
+                    </html>
